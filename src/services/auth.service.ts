@@ -15,7 +15,7 @@ const api = axios.create({
 
 class AuthService {
   async login(credentials: AuthLogin): Promise<AuthResponse> {
-    const { data } = await api.post<AuthResponse>('/auth/login', credentials)
+    const { data } = await api.post<AuthResponse>('auth/login', credentials)
     return data
   }
 
