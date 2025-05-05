@@ -1,12 +1,12 @@
 import axios from 'axios'
 import type { AuthLogin, AuthResponse } from '@/types/auth.type'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://192.168.1.103:8000'
+const API_URL = import.meta.env.VITE_API_URL || 'https://conectando-corazones.onrender.com'
 const TOKEN_KEY = 'auth_token'
 const USER_DATA_KEY = 'user_data'
 
 const api = axios.create({
-  baseURL: `${API_URL}/api`,
+  baseURL: API_URL,
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
@@ -15,7 +15,7 @@ const api = axios.create({
 
 class AuthService {
   async login(credentials: AuthLogin): Promise<AuthResponse> {
-    const { data } = await api.post<AuthResponse>('auth/login', credentials)
+    const { data } = await api.post<AuthResponse>('/api/auth/login', credentials)
     return data
   }
 
